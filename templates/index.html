@@ -297,6 +297,14 @@
             z-index: 9999;
             transition: width 0.1s ease-out;
         }
+        /* Experience‑card body: 4 rows → company · keytasks · achievements · skills */
+.exp-body {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;  /* <‑‑ key line */
+    gap: 1.5rem;                             /* = Tailwind’s gap‑6 */
+    flex: 1 1 0%;
+  }
+  
     </style>
 </head>
 
@@ -595,116 +603,179 @@
           <!-- Experience Grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
       
-            <!-- Card 1 -->
-            <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
-              <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
+            <!-- ─────────────── Card 1 ─────────────── -->
+            <article
+              class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
+              <header
+                class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
                 <i class="fas fa-chart-line text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
                 <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
               </header>
-              <div class="p-8 flex flex-col gap-6 flex-1">
+      
+              <!-- Card body: 4‑row grid -->
+              <div class="p-8 exp-body">
+                <!-- row 1 – company + date -->
                 <div class="h-24">
                   <h3 class="text-2xl font-semibold leading-tight line-clamp-2">McDermott Will &amp; Emery</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Data Analysis Intern • 2020</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Data Analysis Intern • 2020</p>
                 </div>
       
+                <!-- row 2 – Key Tasks -->
                 <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Key Tasks</h4>
-                  <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
+                  <ul
+                    class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
                     <li>Collected and cleaned branch data from multiple firms.</li>
                     <li>Presented competitive analysis to attorneys in weekly briefs.</li>
                   </ul>
                 </div>
       
+                <!-- row 3 – Achievements -->
                 <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm">Produced a comprehensive industry competition report highlighting three key market trends that influenced firm strategy.</p>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Produced a comprehensive industry competition report highlighting three key market trends that influenced
+                    firm strategy.
+                  </p>
                 </div>
       
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark mt-auto">
+                <!-- row 4 – Skills (1 fr keeps it at the bottom) -->
+                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
                   <ul class="flex flex-wrap gap-2">
-                    <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Data Analysis</li>
-                    <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Power BI</li>
-                    <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">SQL</li>
-                    <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Excel</li>
+                    <li
+                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
+                      Data Analysis</li>
+                    <li
+                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
+                      Power BI</li>
+                    <li
+                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
+                      SQL</li>
+                    <li
+                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
+                      Excel</li>
                   </ul>
                 </div>
               </div>
             </article>
       
-            <!-- Card 2 -->
-            <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
-              <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
+            <!-- ─────────────── Card 2 ─────────────── -->
+            <article
+              class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
+              <header
+                class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
                 <i class="fas fa-brain text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
                 <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
               </header>
-              <div class="p-8 flex flex-col gap-6 flex-1">
+      
+              <!-- Card body -->
+              <div class="p-8 exp-body">
+                <!-- row 1 -->
                 <div class="h-24">
                   <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Computer Vision Group</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Research Assistant • 2024 – Present</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Research Assistant • 2024 – Present</p>
                 </div>
       
+                <!-- row 2 -->
                 <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Key Tasks</h4>
-                  <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                    <li>Curated &gt;10 k-image dataset and labelled with CVAT.</li>
+                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
+                  <ul
+                    class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                    <li>Curated &gt;10 k‑image dataset and labelled with CVAT.</li>
                     <li>Trained EfficientDet &amp; ViT models, reaching 92 % mAP.</li>
-                    <li>Deployed an ONNX + FastAPI inference service.</li>
+                    <li>Deployed an ONNX + FastAPI inference service.</li>
                   </ul>
                 </div>
       
+                <!-- row 3 -->
                 <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm">Developed multifocal recognition models (ViT, CNN, FCN) achieving 72 % accuracy on FER2013 and ~70 % on AffectNet.</p>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Developed multifocal recognition models (ViT, CNN, FCN) achieving 72 % accuracy on FER2013 and ~70 % on
+                    AffectNet.
+                  </p>
                 </div>
       
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark mt-auto">
+                <!-- row 4 -->
+                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
                   <ul class="flex flex-wrap gap-2">
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">PyTorch</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Computer Vision</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Hugging Face</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">ONNX</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">FastAPI</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      PyTorch</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      Computer Vision</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      Hugging Face</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      ONNX</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      FastAPI</li>
                   </ul>
                 </div>
               </div>
             </article>
       
-            <!-- Card 3 -->
-            <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
-              <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
+            <!-- ─────────────── Card 3 ─────────────── -->
+            <article
+              class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
+              <header
+                class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
                 <i class="fas fa-laptop-code text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
                 <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
               </header>
-              <div class="p-8 flex flex-col gap-6 flex-1">
+      
+              <!-- Card body -->
+              <div class="p-8 exp-body">
+                <!-- row 1 -->
                 <div class="h-24">
                   <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Systems Lab</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Java Developer Intern • 2024</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Java Developer Intern • 2024</p>
                 </div>
       
+                <!-- row 2 -->
                 <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Key Tasks</h4>
-                  <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
+                  <ul
+                    class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
                     <li>Set up Git workflows and Gradle build automation for CI/CD.</li>
                     <li>Applied OOP principles &amp; design patterns for scalable features.</li>
                     <li>Wrote JUnit tests and used debuggers to ensure code quality.</li>
                   </ul>
                 </div>
       
+                <!-- row 3 -->
                 <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm">Built an online multiplayer chess game prototype, laying groundwork for the final project.</p>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Built an online multiplayer chess game prototype, laying groundwork for the final project.
+                  </p>
                 </div>
       
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark mt-auto">
+                <!-- row 4 -->
+                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
                   <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
                   <ul class="flex flex-wrap gap-2">
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Java</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Git</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Gradle</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">JUnit</li>
-                    <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Design Patterns</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      Java</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      Git</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      Gradle</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      JUnit</li>
+                    <li
+                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
+                      Design Patterns</li>
                   </ul>
                 </div>
               </div>
@@ -714,7 +785,7 @@
         </div>
       </section>
       
-
+      
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
         <div class="max-w-6xl mx-auto">
@@ -1104,6 +1175,39 @@
             const scrolled = (window.scrollY / docHeight) * 100;
             document.getElementById('scroll-progress').style.width = scrolled + '%';
         });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const blocks = document.querySelectorAll('.exp-keytasks');
+            let max = 0;
+            blocks.forEach(b => { max = Math.max(max, b.offsetHeight); });
+            console.log(max);
+            blocks.forEach(b => {
+                // keep adding blank lines until this block matches the max height
+                while (b.offsetHeight < max) {
+                    b.appendChild(document.createElement('br'));
+                }
+            });
+            // ensure uniform heights for Key Tasks and Achievements rows across all cards
+            const expBodies = document.querySelectorAll('.exp-body');
+            let maxTasks = 0, maxAch = 0;
+
+            // find the maximum heights
+            expBodies.forEach(body => {
+                const rows = body.children;
+                maxTasks = Math.max(maxTasks, rows[1].offsetHeight);
+                maxAch   = Math.max(maxAch,   rows[2].offsetHeight);
+            });
+
+            // apply them as min-heights
+            expBodies.forEach(body => {
+                const rows = body.children;
+                rows[1].style.minHeight = maxTasks + 'px';
+                rows[2].style.minHeight = maxAch   + 'px';
+            });
+        });
+
+            
     </script>
 </body>
 
