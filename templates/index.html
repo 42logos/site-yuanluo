@@ -1,1310 +1,1103 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yuanluo Wu | CS + Math Student</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        dark: '#121212',
-                        light: '#f8fafc',
-                        primary: {
-                            light: '#2563eb',
-                            dark: '#3b82f6'
-                        },
-                        accent: {
-                            light: '#10b981',
-                            dark: '#34d399'
-                        },
-                        secondary: {
-                            light: '#7c3aed',
-                            dark: '#8b5cf6'
-                        }
-                    },
-                    animation: {
-                        'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'fade-in': 'fadeIn 1s ease-in-out',
-                        'pulse-slow': 'pulse 5s infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'spin-slow': 'spin 8s linear infinite'
-                    },
-                    keyframes: {
-                        typing: {
-                            'from': { width: '0' },
-                            'to': { width: '100%' }
-                        },
-                        'blink-caret': {
-                            'from, to': { 'border-color': 'transparent' },
-                            '50%': { 'border-color': 'currentColor' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' }
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        }
-                    }
-                }
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace']
+            },
+            colors: {
+              dark: '#121212',
+              light: '#f8fafc',
+              primary: {
+                light: '#2563eb',
+                dark: '#3b82f6'
+              },
+              accent: {
+                light: '#10b981',
+                dark: '#34d399'
+              },
+              secondary: {
+                light: '#7c3aed',
+                dark: '#8b5cf6'
+              }
+            },
+            animation: {
+              typing: 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
+              float: 'float 6s ease-in-out infinite',
+              'fade-in': 'fadeIn 1s ease-in-out',
+              'pulse-slow': 'pulse 5s infinite',
+              'bounce-slow': 'bounce 3s infinite',
+              'spin-slow': 'spin 8s linear infinite'
+            },
+            keyframes: {
+              typing: {
+                from: { width: '0' },
+                to: { width: '100%' }
+              },
+              'blink-caret': {
+                'from, to': { 'border-color': 'transparent' },
+                '50%': { 'border-color': 'currentColor' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' }
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              }
             }
+          }
         }
+      }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-
-            /* light 模式下背景和文字色 */
-            background-color: #f8fafc;
-            /* bg-light */
-            color: #1f2937;
-            /* text-gray-800 */
-
-            /* 过渡效果 */
-            transition-property: background-color, border-color, color, fill, stroke;
-            transition-duration: 300ms;
-            /* duration-300 */
-        }
-
-        /* 暗黑模式 */
-        .dark body {
-            background-color: #121212;
-            /* dark:bg-dark */
-            color: #f3f4f6;
-            /* dark:text-gray-100 */
-        }
-
-        .gradient-text {
-            background-image: linear-gradient(to right, #2563eb, #10b981);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .dark .gradient-text {
-            /* 暗色模式下的渐变（配合你 tailwind.config 里的 primary-dark/accent-dark） */
-            background-image: linear-gradient(to right, #3b82f6, #34d399);
-        }
-
-
-        /* 1. 渐变背景 */
-        .gradient-bg {
-            background-image: linear-gradient(to right, #2563eb, #10b981);
-        }
-
-        .dark .gradient-bg {
-            background-image: linear-gradient(to right, #3b82f6, #34d399);
-        }
-
-        /* 2. 卡片悬停效果 */
-        .card-hover {
-            transition: all 0.3s;
-            transform-style: preserve-3d;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
-            /* 对应 Tailwind 的 shadow-lg */
-            box-shadow:
-                0 10px 15px -3px rgba(0, 0, 0, 0.10),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .dark .card-hover:hover {
-            /* 对应 dark:hover:shadow-gray-800/50 */
-            box-shadow:
-                0 10px 15px -3px rgba(31, 41, 55, 0.50),
-                0 4px 6px -2px rgba(31, 41, 55, 0.50);
-        }
-
-
-        /* 4. 技能条容器 */
-        .skill-bar {
-            height: 0.75rem;
-            /* h-3 */
-            border-radius: 0.375rem;
-            /* rounded-full */
-            background-color: #e5e7eb;
-            /* bg-gray-200 */
-            overflow: hidden;
-        }
-
-        .dark .skill-bar {
-            background-color: #374151;
-            /* dark:bg-gray-700 */
-        }
-
-        /* 5. 技能进度条 */
-        .skill-progress {
-            height: 100%;
-            border-radius: 0.375rem;
-            background-image: linear-gradient(to right, #2563eb, #10b981);
-            transition: width 1.5s ease-in-out;
-        }
-
-        .dark .skill-progress {
-            background-image: linear-gradient(to right, #3b82f6, #34d399);
-        }
-
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+      
+        /* light 模式下背景和文字色 */
+        background-color: #f8fafc;
+        /* bg-light */
+        color: #1f2937;
+        /* text-gray-800 */
+      
+        /* 过渡效果 */
+        transition-property: background-color, border-color, color, fill, stroke;
+        transition-duration: 300ms;
+        /* duration-300 */
+      }
+      
+      /* 暗黑模式 */
+      .dark body {
+        background-color: #121212;
+        /* dark:bg-dark */
+        color: #f3f4f6;
+        /* dark:text-gray-100 */
+      }
+      
+      .gradient-text {
+        background-image: linear-gradient(to right, #2563eb, #10b981);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .dark .gradient-text {
+        /* 暗色模式下的渐变（配合你 tailwind.config 里的 primary-dark/accent-dark） */
+        background-image: linear-gradient(to right, #3b82f6, #34d399);
+      }
+      
+      /* 1. 渐变背景 */
+      .gradient-bg {
+        background-image: linear-gradient(to right, #2563eb, #10b981);
+      }
+      
+      .dark .gradient-bg {
+        background-image: linear-gradient(to right, #3b82f6, #34d399);
+      }
+      
+      /* 2. 卡片悬停效果 */
+      .card-hover {
+        transition: all 0.3s;
+        transform-style: preserve-3d;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
+        /* 对应 Tailwind 的 shadow-lg */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      
+      .dark .card-hover:hover {
+        /* 对应 dark:hover:shadow-gray-800/50 */
+        box-shadow: 0 10px 15px -3px rgba(31, 41, 55, 0.5), 0 4px 6px -2px rgba(31, 41, 55, 0.5);
+      }
+      
+      /* 4. 技能条容器 */
+      .skill-bar {
+        height: 0.75rem;
+        /* h-3 */
+        border-radius: 0.375rem;
+        /* rounded-full */
+        background-color: #e5e7eb;
+        /* bg-gray-200 */
+        overflow: hidden;
+      }
+      
+      .dark .skill-bar {
+        background-color: #374151;
+        /* dark:bg-gray-700 */
+      }
+      
+      /* 5. 技能进度条 */
+      .skill-progress {
+        height: 100%;
+        border-radius: 0.375rem;
+        background-image: linear-gradient(to right, #2563eb, #10b981);
+        transition: width 1.5s ease-in-out;
+      }
+      
+      .dark .skill-progress {
+        background-image: linear-gradient(to right, #3b82f6, #34d399);
+      }
+      
+      .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .animate-fade-in {
+        animation: fadeIn 1s ease-in-out;
+      }
+      
+      .hover-underline {
+        position: relative;
+      }
+      
+      .hover-underline {
+        position: relative;
+      }
+      
+      .hover-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-image: linear-gradient(to right, #2563eb, #10b981);
+        transition: width 0.3s ease;
+      }
+      
+      .dark .hover-underline::after {
+        background-image: linear-gradient(to right, #3b82f6, #34d399);
+      }
+      
+      .hover-underline:hover::after {
+        width: 100%;
+      }
+      
+      .hover-underline:hover::after {
+        width: 100%;
+      }
+      
+      .floating-shape {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      @media (max-width: 768px) {
         .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+          background-attachment: scroll;
         }
-
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .hover-underline {
-            position: relative;
-        }
-
-        .hover-underline {
-            position: relative;
-        }
-
-        .hover-underline::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-image: linear-gradient(to right, #2563eb, #10b981);
-            transition: width 0.3s ease;
-        }
-
-        .dark .hover-underline::after {
-            background-image: linear-gradient(to right, #3b82f6, #34d399);
-        }
-
-        .hover-underline:hover::after {
-            width: 100%;
-        }
-
-
-        .hover-underline:hover::after {
-            width: 100%;
-        }
-
-        .floating-shape {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll;
-            }
-        }
-
-        /* Improved contrast for dark mode */
-        .dark .text-gray-300 {
-            color: #e5e7eb;
-        }
-
-        .dark .bg-gray-800 {
-            background-color: #1f2937;
-        }
-
-        .dark .bg-gray-700 {
-            background-color: #374151;
-        }
-
-        .dark .text-gray-400 {
-            color: #9ca3af;
-        }
-
-        /* Particle background */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            animation: float 15s infinite linear;
-        }
-
-        /* Tooltip */
-        .tooltip {
-            position: relative;
-        }
-
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 120px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        #scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            /* 你可以改成 2px、3px、5px…… */
-            width: 0;
-            background-color: #2563eb;
-            /* 进度条颜色 / 可用 Tailwind 里 primary-light */
-            z-index: 9999;
-            transition: width 0.1s ease-out;
-        }
-        /* Experience‑card body: 4 rows → company · keytasks · achievements · skills */
-.exp-body {
-    display: grid;
-    grid-template-rows: auto auto auto 1fr;  /* <‑‑ key line */
-    gap: 1.5rem;                             /* = Tailwind’s gap‑6 */
-    flex: 1 1 0%;
-  }
-  
+      }
+      
+      /* Improved contrast for dark mode */
+      .dark .text-gray-300 {
+        color: #e5e7eb;
+      }
+      
+      .dark .bg-gray-800 {
+        background-color: #1f2937;
+      }
+      
+      .dark .bg-gray-700 {
+        background-color: #374151;
+      }
+      
+      .dark .text-gray-400 {
+        color: #9ca3af;
+      }
+      
+      /* Particle background */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+      }
+      
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        animation: float 15s infinite linear;
+      }
+      
+      /* Tooltip */
+      .tooltip {
+        position: relative;
+      }
+      
+      .tooltip .tooltip-text {
+        visibility: hidden;
+        width: 120px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      #scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        /* 你可以改成 2px、3px、5px…… */
+        width: 0;
+        background-color: #2563eb;
+        /* 进度条颜色 / 可用 Tailwind 里 primary-light */
+        z-index: 9999;
+        transition: width 0.1s ease-out;
+      }
+      /* Experience‑card body: 4 rows → company · keytasks · achievements · skills */
+      .exp-body {
+        display: grid;
+        grid-template-rows: auto auto auto 1fr; /* <‑‑ key line */
+        gap: 1.5rem; /* = Tailwind’s gap‑6 */
+        flex: 1 1 0%;
+      }
     </style>
-</head>
+  </head>
 
-<body class="antialiased">
+  <body class="antialiased">
     <div id="scroll-progress"></div>
     <!-- Navigation -->
     <nav class="fixed w-full z-50 backdrop-blur-md bg-white/90 dark:bg-dark/90 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold gradient-text flex items-center">
-                        <span class="mr-2">👋</span> Yuanluo Wu
-                    </a>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">About</a>
-                    <a href="#education"
-                        class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Education</a>
-                    <a href="#experience"
-                        class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Experience</a>
-                    <a href="#projects"
-                        class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Projects</a>
-                    <a href="#skills" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Skills</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="
-                      p-2 rounded-full
-                      bg-gray-100 dark:bg-gray-700        /* 默认背景 */
-                      hover:bg-gray-200 dark:hover:bg-gray-600
-                      transition-colors
-                      text-gray-900 dark:text-gray-200     /* 默认文字色 */
-                      tooltip
-                    ">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
-                        <span class="tooltip-text">Toggle theme</span>
-                    </button>
-                    <a href="#" class="md:hidden" id="mobile-menu-button">
-                        <i class="fas fa-bars text-xl"></i>
-                    </a>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <a href="#" class="text-xl font-bold gradient-text flex items-center"><span class="mr-2">👋</span> Yuanluo Wu</a>
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#about" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">About</a>
+            <a href="#education" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Education</a>
+            <a href="#experience" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Experience</a>
+            <a href="#projects" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Projects</a>
+            <a href="#skills" class="text-gray-700 dark:text-gray-200 hover-underline font-medium">Skills</a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 /* 默认背景 */ hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-900 dark:text-gray-200 /* 默认文字色 */ tooltip">
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:block"></i>
+              <span class="tooltip-text">Toggle theme</span>
+            </button>
+            <a href="#" class="md:hidden" id="mobile-menu-button"><i class="fas fa-bars text-xl"></i></a>
+          </div>
         </div>
+      </div>
 
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
-                <a href="#education"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Education</a>
-                <a href="#experience"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Experience</a>
-                <a href="#projects"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a>
-                <a href="#skills"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Skills</a>
-            </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+          <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Education</a>
+          <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Experience</a>
+          <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a>
+          <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-light dark:hover:text-primary-dark hover:bg-gray-100 dark:hover:bg-gray-700">Skills</a>
         </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section
-        class="min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 parallax relative overflow-hidden"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop');">
-        <!-- Particle background -->
-        <div class="particles" id="particles-js"></div>
+    <section class="min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 parallax relative overflow-hidden" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop');">
+      <!-- Particle background -->
+      <div class="particles" id="particles-js"></div>
 
-        <div class="text-center max-w-4xl mx-auto relative z-10">
-            <div
-                class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 mb-6 relative floating-shape">
-                <img src="https://media.licdn.com/dms/image/v2/D4E03AQGZTbvMzBFKWg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1700336975788?e=1751500800&v=beta&t=hjp1-9PZQubgNSeJSQmidBBADnGvHW0COvNRy2VrWrE"
-                    alt="Yuanluo Wu" class="w-full h-full object-cover">
-                <div
-                    class="absolute inset-0 rounded-full border-4 border-transparent hover:border-primary-light dark:hover:border-primary-dark transition-all duration-300">
-                </div>
-            </div>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">Yuanluo Wu</h1>
-            <div class="text-xl sm:text-2xl md:text-3xl font-light text-gray-200 mb-8">
-                <span id="typing-text"
-                    class="inline-block overflow-hidden whitespace-nowrap border-r-2 border-white">CS + Math Student.</span>
-            </div>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#about"
-                    class="px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors flex items-center justify-center">
-                    Explore More <i class="fas fa-chevron-down ml-2 animate-bounce"></i>
-                </a>
-                <a href="static/cv_Yuanluo_Wu_3.0.pdf" target="_blank"
-                    class="px-6 py-3 border-2 border-white text-white rounded-full font-medium hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center">
-                    Download CV <i class="fas fa-download ml-2"></i>
-                </a>
-            </div>
+      <div class="text-center max-w-4xl mx-auto relative z-10">
+        <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 mb-6 relative floating-shape">
+          <img src="https://media.licdn.com/dms/image/v2/D4E03AQGZTbvMzBFKWg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1700336975788?e=1751500800&v=beta&t=hjp1-9PZQubgNSeJSQmidBBADnGvHW0COvNRy2VrWrE" alt="Yuanluo Wu" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 rounded-full border-4 border-transparent hover:border-primary-light dark:hover:border-primary-dark transition-all duration-300"></div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-white tooltip">
-                <i class="fas fa-chevron-down text-2xl"></i>
-                <span class="tooltip-text">Scroll down</span>
-            </a>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">Yuanluo Wu</h1>
+        <div class="text-xl sm:text-2xl md:text-3xl font-light text-gray-200 mb-8">
+          <span id="typing-text" class="inline-block overflow-hidden whitespace-nowrap border-r-2 border-white">CS + Math Student.</span>
         </div>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href="#about" class="px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors flex items-center justify-center">Explore More <i class="fas fa-chevron-down ml-2 animate-bounce"></i></a>
+          <a href="static/cv_Yuanluo_Wu_3.0.pdf" target="_blank" class="px-6 py-3 border-2 border-white text-white rounded-full font-medium hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center">Download CV <i class="fas fa-download ml-2"></i></a>
+        </div>
+      </div>
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#about" class="text-white tooltip">
+          <i class="fas fa-chevron-down text-2xl"></i>
+          <span class="tooltip-text">Scroll down</span>
+        </a>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
-                About Me
-                <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
-            </h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-                        Bachelor's student in <span
-                            class="font-semibold text-primary-light dark:text-primary-dark">Computer Science plus
-                            Mathematic</span> at <span class="font-semibold">LMU München</span>, specializing in neural
-                        network regression and deep learning applications. Passionate about solving complex problems at
-                        the intersection of computer science and mathematics.
-                    </p>
-                    <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-                        I enjoy working close to the metal when needed, but I'm equally comfortable designing <span
-                        class="font-bold">high-level abstractions</span> . 
-                        My current interests include <span class="font-bold">reinforcement learning, simulation-based optimization</span> , and efficient software architecture for AI-driven applications. 
-                        I value clean code, reproducible workflows, and well-reasoned design choices.
-                    </p>
-                    <div class="pt-4">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Languages</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span
-                                class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center">
-                                <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> German
-                                (negotiation‑level)
-                            </span>
-                            <span
-                                class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center">
-                                <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> Chinese
-                                (native‑level)
-                                (negotiation‑level)
-                            </span>
-                            <span
-                                class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center">
-                                <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> English
-                                (negotiation‑level)
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl shadow-sm glass-effect">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
-                            <div class="text-3xl font-bold gradient-text mb-2">2+</div>
-                            <div class="text-gray-600 dark:text-gray-300 font-medium">Years of Study</div>
-                        </div>
-                        <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
-                            <div class="text-3xl font-bold gradient-text mb-2">3</div>
-                            <div class="text-gray-600 dark:text-gray-300 font-medium">Internships</div>
-                        </div>
-                        <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
-                            <div class="text-3xl font-bold gradient-text mb-2">5+</div>
-                            <div class="text-gray-600 dark:text-gray-300 font-medium">Projects</div>
-                        </div>
-                        <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
-                            <div class="text-3xl font-bold gradient-text mb-2">∞</div>
-                            <div class="text-gray-600 dark:text-gray-300 font-medium">Curiosity</div>
-                        </div>
-                    </div>
-                    <div class="mt-8 flex justify-center space-x-4">
-                        <a href="https://github.com/42logos" target="_blank"
-                            class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip">
-                            <i class="fab fa-github text-xl"></i>
-                            <span class="tooltip-text">GitHub</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank"
-                            class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip">
-                            <i class="fab fa-linkedin-in text-xl"></i>
-                            <span class="tooltip-text">LinkedIn</span>
-                        </a>
-                        <a href="mailto:yuanluo.wu@campus.lmu.de"
-                            class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip">
-                            <i class="fas fa-envelope text-xl"></i>
-                            <span class="tooltip-text">Email me</span>
-                        </a>
-                    </div>
-                </div>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
+          About Me
+          <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+              Bachelor's student in <span class="font-semibold text-primary-light dark:text-primary-dark">Computer Science plus Mathematic</span> at <span class="font-semibold">LMU München</span>, specializing in neural network regression and deep learning applications. Passionate about solving complex problems at the intersection of computer science and mathematics.
+            </p>
+            <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+              I enjoy working close to the metal when needed, but I'm equally comfortable designing <span class="font-bold">high-level abstractions</span> . My current interests include <span class="font-bold">reinforcement learning, simulation-based optimization</span> , and efficient software architecture for AI-driven applications. I value clean code, reproducible workflows, and well-reasoned design choices.
+            </p>
+            <div class="pt-4">
+              <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Languages</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center"><i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> German (negotiation‑level)</span>
+                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center"><i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> Chinese (native‑level) (negotiation‑level)</span>
+                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center"><i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> English (negotiation‑level)</span>
+              </div>
             </div>
+          </div>
+          <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl shadow-sm glass-effect">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
+                <div class="text-3xl font-bold gradient-text mb-2">2+</div>
+                <div class="text-gray-600 dark:text-gray-300 font-medium">Years of Study</div>
+              </div>
+              <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
+                <div class="text-3xl font-bold gradient-text mb-2">3</div>
+                <div class="text-gray-600 dark:text-gray-300 font-medium">Internships</div>
+              </div>
+              <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
+                <div class="text-3xl font-bold gradient-text mb-2">5+</div>
+                <div class="text-gray-600 dark:text-gray-300 font-medium">Projects</div>
+              </div>
+              <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover">
+                <div class="text-3xl font-bold gradient-text mb-2">∞</div>
+                <div class="text-gray-600 dark:text-gray-300 font-medium">Curiosity</div>
+              </div>
+            </div>
+            <div class="mt-8 flex justify-center space-x-4">
+              <a href="https://github.com/42logos" target="_blank" class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip">
+                <i class="fab fa-github text-xl"></i>
+                <span class="tooltip-text">GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank" class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip">
+                <i class="fab fa-linkedin-in text-xl"></i>
+                <span class="tooltip-text">LinkedIn</span>
+              </a>
+              <a href="mailto:yuanluo.wu@campus.lmu.de" class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip">
+                <i class="fas fa-envelope text-xl"></i>
+                <span class="tooltip-text">Email me</span>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Education Section -->
     <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
-                Education
-                <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
-            </h2>
-            <div class="relative">
-                <!-- Timeline line -->
-                <div
-                    class="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark transform -translate-x-1/2">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
+          Education
+          <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
+        </h2>
+        <div class="relative">
+          <!-- Timeline line -->
+          <div class="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark transform -translate-x-1/2"></div>
+
+          <!-- Timeline items -->
+          <div class="space-y-8 md:space-y-16">
+            <!-- Item 1 -->
+            <div class="relative md:w-1/2 ml-auto md:pl-16 timeline-item">
+              <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-sm card-hover">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-primary-light dark:bg-primary-dark rounded-full flex items-center justify-center text-white mr-4">
+                    <i class="fas fa-university text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold">LMU Munich</h3>
+                    <p class="text-gray-600 dark:text-gray-400">2022 – Present</p>
+                  </div>
                 </div>
-
-                <!-- Timeline items -->
-                <div class="space-y-8 md:space-y-16">
-                    <!-- Item 1 -->
-                    <div class="relative md:w-1/2 ml-auto md:pl-16 timeline-item">
-                        <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-sm card-hover">
-                            <div class="flex items-center mb-4">
-                                <div
-                                    class="w-12 h-12 bg-primary-light dark:bg-primary-dark rounded-full flex items-center justify-center text-white mr-4">
-                                    <i class="fas fa-university text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold">LMU Munich</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">2022 – Present</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300">
-                                Bachelor's degree in <span class="font-medium">Computer Science (Informatik)</span> and
-                                <span class="font-medium">Mathematics</span>. Specializing in neural networks, deep
-                                learning, and mathematical foundations of computer science.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Neural
-                                    Networks</span>
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Deep
-                                    Learning</span>
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Theoretical
-                                    CS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="relative md:w-1/2 mr-auto md:pr-16 timeline-item">
-                        <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-sm card-hover">
-                            <div class="flex items-center mb-4">
-                                <div
-                                    class="w-12 h-12 bg-accent-light dark:bg-accent-dark rounded-full flex items-center justify-center text-white mr-4">
-                                    <i class="fas fa-microchip text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold">Technical University of Munich</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">2022 – 2023</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300">
-                                Bachelor's program in <span class="font-medium">Electrical Engineering</span> before
-                                transferring to LMU Munich to pursue my passion for computer science and mathematics.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Circuit
-                                    Design</span>
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Signal
-                                    Processing</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="relative md:w-1/2 ml-auto md:pl-16 timeline-item">
-                        <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-sm card-hover">
-                            <div class="flex items-center mb-4">
-                                <div
-                                    class="w-12 h-12 bg-primary-light dark:bg-primary-dark rounded-full flex items-center justify-center text-white mr-4">
-                                    <i class="fas fa-school text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold">Abitur</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">2019 – 2022</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300">
-                                Completed secondary education in Schondorf with a focus on <span
-                                    class="font-medium">mathematics</span> and <span
-                                    class="font-medium">sciences</span>. Graduated with a GPA of 2.5.
-                            </p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span
-                                    class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Mathematics</span>
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Physics</span>
-                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Computer
-                                    Science</span>
-                            </div>
-                        </div>
-                    </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Bachelor's degree in <span class="font-medium">Computer Science (Informatik)</span> and
+                  <span class="font-medium">Mathematics</span>. Specializing in neural networks, deep learning, and mathematical foundations of computer science.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Neural Networks</span>
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Deep Learning</span>
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Theoretical CS</span>
                 </div>
+              </div>
             </div>
+
+            <!-- Item 2 -->
+            <div class="relative md:w-1/2 mr-auto md:pr-16 timeline-item">
+              <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-sm card-hover">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-accent-light dark:bg-accent-dark rounded-full flex items-center justify-center text-white mr-4">
+                    <i class="fas fa-microchip text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold">Technical University of Munich</h3>
+                    <p class="text-gray-600 dark:text-gray-400">2022 – 2023</p>
+                  </div>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Bachelor's program in <span class="font-medium">Electrical Engineering</span> before transferring to LMU Munich to pursue my passion for computer science and mathematics.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Circuit Design</span>
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Signal Processing</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="relative md:w-1/2 ml-auto md:pl-16 timeline-item">
+              <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-sm card-hover">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-primary-light dark:bg-primary-dark rounded-full flex items-center justify-center text-white mr-4">
+                    <i class="fas fa-school text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold">Abitur</h3>
+                    <p class="text-gray-600 dark:text-gray-400">2019 – 2022</p>
+                  </div>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  Completed secondary education in Schondorf with a focus on <span class="font-medium">mathematics</span> and <span class="font-medium">sciences</span>. Graduated with a GPA of 2.5.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Mathematics</span>
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Physics</span>
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">Computer Science</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-        <div class="max-w-6xl mx-auto">
-          <!-- Section Title -->
-          <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary-light to-accent-light bg-clip-text text-transparent dark:from-primary-dark dark:to-accent-dark">
-            Experience
-          </h2>
-      
-          <!-- Experience Grid -->
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-      
-            <!-- ─────────────── Card 1 ─────────────── -->
-            <article
-              class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
-              <header
-                class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
-                <i class="fas fa-chart-line text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              </header>
-      
-              <!-- Card body: 4‑row grid -->
-              <div class="p-8 exp-body">
-                <!-- row 1 – company + date -->
-                <div class="h-24">
-                  <h3 class="text-2xl font-semibold leading-tight line-clamp-2">McDermott Will &amp; Emery</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Data Analysis Intern • 2020</p>
-                </div>
-      
-                <!-- row 2 – Key Tasks -->
-                <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
-                  <ul
-                    class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                    <li>Collected and cleaned branch data from multiple firms.</li>
-                    <li>Presented competitive analysis to attorneys in weekly briefs.</li>
-                  </ul>
-                </div>
-      
-                <!-- row 3 – Achievements -->
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm">
-                    Produced a comprehensive industry competition report highlighting three key market trends that influenced
-                    firm strategy.
-                  </p>
-                </div>
-      
-                <!-- row 4 – Skills (1 fr keeps it at the bottom) -->
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
-                  <ul class="flex flex-wrap gap-2">
-                    <li
-                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
-                      Data Analysis</li>
-                    <li
-                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
-                      Power BI</li>
-                    <li
-                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
-                      SQL</li>
-                    <li
-                      class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">
-                      Excel</li>
-                  </ul>
-                </div>
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Title -->
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary-light to-accent-light bg-clip-text text-transparent dark:from-primary-dark dark:to-accent-dark">Experience</h2>
+
+        <!-- Experience Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- ─────────────── Card 1 ─────────────── -->
+          <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
+            <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
+              <i class="fas fa-chart-line text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+              <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+            </header>
+
+            <!-- Card body: 4‑row grid -->
+            <div class="p-8 exp-body">
+              <!-- row 1 – company + date -->
+              <div class="h-24">
+                <h3 class="text-2xl font-semibold leading-tight line-clamp-2">McDermott Will &amp; Emery</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Data Analysis Intern • 2020</p>
               </div>
-            </article>
-      
-            <!-- ─────────────── Card 2 ─────────────── -->
-            <article
-              class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
-              <header
-                class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
-                <i class="fas fa-brain text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              </header>
-      
-              <!-- Card body -->
-              <div class="p-8 exp-body">
-                <!-- row 1 -->
-                <div class="h-24">
-                  <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Computer Vision Group</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Research Assistant • 2024 – Present</p>
-                </div>
-      
-                <!-- row 2 -->
-                <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
-                  <ul
-                    class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                    <li>Curated &gt;10 k‑image dataset and labelled with CVAT.</li>
-                    <li>Trained EfficientDet &amp; ViT models, reaching 92 % mAP.</li>
-                    <li>Deployed an ONNX + FastAPI inference service.</li>
-                  </ul>
-                </div>
-      
-                <!-- row 3 -->
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm">
-                    Developed multifocal recognition models (ViT, CNN, FCN) achieving 72 % accuracy on FER2013 and ~70 % on
-                    AffectNet.
-                  </p>
-                </div>
-      
-                <!-- row 4 -->
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
-                  <ul class="flex flex-wrap gap-2">
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      PyTorch</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      Computer Vision</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      Hugging Face</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      ONNX</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      FastAPI</li>
-                  </ul>
-                </div>
+
+              <!-- row 2 – Key Tasks -->
+              <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
+                <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                  <li>Collected and cleaned branch data from multiple firms.</li>
+                  <li>Presented competitive analysis to attorneys in weekly briefs.</li>
+                </ul>
               </div>
-            </article>
-      
-            <!-- ─────────────── Card 3 ─────────────── -->
-            <article
-              class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
-              <header
-                class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
-                <i class="fas fa-laptop-code text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              </header>
-      
-              <!-- Card body -->
-              <div class="p-8 exp-body">
-                <!-- row 1 -->
-                <div class="h-24">
-                  <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Systems Lab</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Java Developer Intern • 2024</p>
-                </div>
-      
-                <!-- row 2 -->
-                <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
-                  <ul
-                    class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                    <li>Set up Git workflows and Gradle build automation for CI/CD.</li>
-                    <li>Applied OOP principles &amp; design patterns for scalable features.</li>
-                    <li>Wrote JUnit tests and used debuggers to ensure code quality.</li>
-                  </ul>
-                </div>
-      
-                <!-- row 3 -->
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm">
-                    Built an online multiplayer chess game prototype, laying groundwork for the final project.
-                  </p>
-                </div>
-      
-                <!-- row 4 -->
-                <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
-                  <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
-                  <ul class="flex flex-wrap gap-2">
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      Java</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      Git</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      Gradle</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      JUnit</li>
-                    <li
-                      class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">
-                      Design Patterns</li>
-                  </ul>
-                </div>
+
+              <!-- row 3 – Achievements -->
+              <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Produced a comprehensive industry competition report highlighting three key market trends that influenced firm strategy.</p>
               </div>
-            </article>
-      
-          </div>
+
+              <!-- row 4 – Skills (1 fr keeps it at the bottom) -->
+              <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
+                <ul class="flex flex-wrap gap-2">
+                  <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Data Analysis</li>
+                  <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Power BI</li>
+                  <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">SQL</li>
+                  <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Excel</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─────────────── Card 2 ─────────────── -->
+          <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
+            <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
+              <i class="fas fa-brain text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+              <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+            </header>
+
+            <!-- Card body -->
+            <div class="p-8 exp-body">
+              <!-- row 1 -->
+              <div class="h-24">
+                <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Computer Vision Group</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Research Assistant • 2024 – Present</p>
+              </div>
+
+              <!-- row 2 -->
+              <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
+                <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                  <li>Curated &gt;10 k‑image dataset and labelled with CVAT.</li>
+                  <li>Trained EfficientDet &amp; ViT models, reaching 92 % mAP.</li>
+                  <li>Deployed an ONNX + FastAPI inference service.</li>
+                </ul>
+              </div>
+
+              <!-- row 3 -->
+              <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Developed multifocal recognition models (ViT, CNN, FCN) achieving 72 % accuracy on FER2013 and ~70 % on AffectNet.</p>
+              </div>
+
+              <!-- row 4 -->
+              <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
+                <ul class="flex flex-wrap gap-2">
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">PyTorch</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Computer Vision</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Hugging Face</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">ONNX</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">FastAPI</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─────────────── Card 3 ─────────────── -->
+          <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col">
+            <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
+              <i class="fas fa-laptop-code text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+              <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+            </header>
+
+            <!-- Card body -->
+            <div class="p-8 exp-body">
+              <!-- row 1 -->
+              <div class="h-24">
+                <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Systems Lab</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Java Developer Intern • 2024</p>
+              </div>
+
+              <!-- row 2 -->
+              <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">Key Tasks</h4>
+                <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                  <li>Set up Git workflows and Gradle build automation for CI/CD.</li>
+                  <li>Applied OOP principles &amp; design patterns for scalable features.</li>
+                  <li>Wrote JUnit tests and used debuggers to ensure code quality.</li>
+                </ul>
+              </div>
+
+              <!-- row 3 -->
+              <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Achievements</h4>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">Built an online multiplayer chess game prototype, laying groundwork for the final project.</p>
+              </div>
+
+              <!-- row 4 -->
+              <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
+                <ul class="flex flex-wrap gap-2">
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Java</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Git</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Gradle</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">JUnit</li>
+                  <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Design Patterns</li>
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
     <!-- Experience Section End -->
 
     <!-- Projects Section -->
-      <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-6xl mx-auto">
-  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
-    <span class="bg-gradient-to-r from-primary-light to-accent-light
-                 dark:from-primary-dark dark:to-accent-dark
-                 bg-clip-text text-transparent">
-      Projects
-    </span>
-    <span class="absolute -bottom-1 left-0 w-full h-1
-                 bg-gradient-to-r from-primary-light to-accent-light
-                 dark:from-primary-dark dark:to-accent-dark
-                 rounded-full"></span>
-  </h2>
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
+          <span class="bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark bg-clip-text text-transparent">Projects</span>
+          <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark rounded-full"></span>
+        </h2>
 
-  <div class="grid md:grid-cols-2 gap-8">
-    <!-- Project 1 -->
-    <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-green-100 to-teal-100 dark:from-green-900 dark:to-teal-900 animate-fade-in" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
-      <!-- 悬停时的全卡渐变叠加 -->
-      <div class="absolute inset-0 bg-black opacity-0
-               group-hover:opacity-10 transition-opacity duration-300"></div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Project 1 -->
+          <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-green-100 to-teal-100 dark:from-green-900 dark:to-teal-900 animate-fade-in" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+            <!-- 悬停时的全卡渐变叠加 -->
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
 
-      <!-- 图标区（对角渐变底） -->
-      <div class="h-64 flex items-center justify-center relative overflow-hidden">
-        <i class="fas fa-smile text-6xl text-white opacity-90
-                 group-hover:scale-110 transition-transform duration-300"></i>
-      </div>
+            <!-- 图标区（对角渐变底） -->
+            <div class="h-64 flex items-center justify-center relative overflow-hidden">
+              <i class="fas fa-smile text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-300"></i>
+            </div>
 
-      <!-- 内容区 -->
-      <div class="p-6 relative">
-        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-          Facial Expression Recognition
-        </h3>
-        <p class="text-gray-700 dark:text-gray-300 mb-4">
-          Developed a system using CNN and Vision Transformers (ViT) to classify facial expressions with high accuracy.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            CNN
-          </span>
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            ViT
-          </span>
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            PyTorch
-          </span>
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            Computer Vision
-          </span>
+            <!-- 内容区 -->
+            <div class="p-6 relative">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Facial Expression Recognition</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">Developed a system using CNN and Vision Transformers (ViT) to classify facial expressions with high accuracy.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">CNN</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">ViT</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">PyTorch</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">Computer Vision</span>
+              </div>
+              <a href="https://github.com/ndrohrich/CVDL_Practical" target="_blank" class="inline-flex items-center text-white dark:text-gray-200 hover:underline font-medium">View on GitHub <i class="fas fa-external-link-alt ml-2"></i></a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 animate-fade-in" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+
+            <div class="h-64 flex items-center justify-center relative overflow-hidden">
+              <i class="fas fa-project-diagram text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-300"></i>
+            </div>
+
+            <div class="p-6 relative">
+                <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Reinforcement Learning Poker Agent</h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                  Personal project developing a heads-up Texas Hold’em agent using self-play reinforcement learning. Built with PyTorch and eval7 to simulate games and optimize policy through training.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">Reinforcement Learning</span>
+                  <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">PyTorch</span>
+                  <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">Poker AI</span>
+                  <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">Self-Play</span>
+                  <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">Game Theory Optimal</span>
+                </div>
+                <a href="#" class="inline-flex items-center text-white dark:text-gray-200 hover:underline font-medium">Coming Soon <i class="fas fa-lock ml-2"></i></a>
+              </div>
+              
+          </div>
         </div>
-        <a href="https://github.com/ndrohrich/CVDL_Practical" target="_blank" class="inline-flex items-center text-white dark:text-gray-200 hover:underline font-medium">
-          View on GitHub <i class="fas fa-external-link-alt ml-2"></i>
-        </a>
       </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 animate-fade-in" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
-      <div class="absolute inset-0 bg-black opacity-0
-               group-hover:opacity-10 transition-opacity duration-300"></div>
-
-      <div class="h-64 flex items-center justify-center relative overflow-hidden">
-        <i class="fas fa-project-diagram text-6xl text-white opacity-90
-                 group-hover:scale-110 transition-transform duration-300"></i>
-      </div>
-
-      <div class="p-6 relative">
-        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-          Neural Network Regression
-        </h3>
-        <p class="text-gray-700 dark:text-gray-300 mb-4">
-          Research project focusing on improving regression accuracy in neural networks through novel architectural approaches.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            Neural Networks
-          </span>
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            Regression
-          </span>
-          <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs">
-            TensorFlow
-          </span>
-        </div>
-        <a href="#" class="inline-flex items-center text-white dark:text-gray-200 hover:underline font-medium">
-          Coming Soon <i class="fas fa-lock ml-2"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
     </section>
-      
-      
+
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
-                Skills
-                <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
-            </h2>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
+          Skills
+          <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
+        </h2>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- 编程语言 -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i class="fas fa-code mr-3 text-primary-light dark:text-primary-dark"></i> Programming Languages
-                    </h3>
-                    <div class="space-y-6">
-                        <!-- Python -->
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium flex items-center">
-                                    <i class="fab fa-python mr-2 text-blue-500"></i> Python
-                                </span>
-                                <span class="text-gray-600 dark:text-gray-400">Expert</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%;"></div>
-                            </div>
-                        </div>
-                        <!-- Java -->
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium flex items-center">
-                                    <i class="fab fa-java mr-2 text-red-500"></i> Java
-                                </span>
-                                <span class="text-gray-600 dark:text-gray-400">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%;"></div>
-                            </div>
-                        </div>
-                        <!-- JavaScript / HTML / CSS -->
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium flex items-center">
-                                    <i class="fab fa-js mr-2 text-yellow-500"></i> JavaScript / HTML / CSS
-                                </span>
-                                <span class="text-gray-600 dark:text-gray-400">Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%;"></div>
-                            </div>
-                        </div>
-                        <!-- Shell -->
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium flex items-center">
-                                    <i class="fas fa-terminal mr-2 text-green-500"></i> Shell Scripting
-                                </span>
-                                <span class="text-gray-600 dark:text-gray-400">Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%;"></div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- 编程语言 -->
+          <div>
+            <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center"><i class="fas fa-code mr-3 text-primary-light dark:text-primary-dark"></i> Programming Languages</h3>
+            <div class="space-y-6">
+              <!-- Python -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium flex items-center"><i class="fab fa-python mr-2 text-blue-500"></i> Python</span>
+                  <span class="text-gray-600 dark:text-gray-400">Expert</span>
                 </div>
-
-                <!-- 框架、工具与领域 -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-                        <i class="fas fa-tools mr-3 text-primary-light dark:text-primary-dark"></i> Frameworks, Tools &
-                        Domains
-                    </h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- 深度学习框架 -->
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fab fa-python text-3xl text-blue-500 mr-3"></i>
-                            <span>PyTorch</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-project-diagram text-3xl text-orange-500 mr-3"></i>
-                            <span>TensorFlow / Keras</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-robot text-3xl text-yellow-500 mr-3"></i>
-                            <span>Transformers</span>
-                        </div>
-                        <!-- 容器与版本控制 -->
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fab fa-docker text-3xl text-blue-400 mr-3"></i>
-                            <span>Docker</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fab fa-linux text-3xl text-gray-700 mr-3"></i>
-                            <span>Linux / Git</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-code-branch text-3xl text-green-500 mr-3"></i>
-                            <span>Gradle / Maven</span>
-                        </div>
-                        <!-- 领域专长 -->
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-chart-line text-3xl text-purple-500 mr-3"></i>
-                            <span>Data Analysis</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-brain text-3xl text-indigo-500 mr-3"></i>
-                            <span>Machine Learning</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-camera text-3xl text-pink-500 mr-3"></i>
-                            <span>Computer Vision</span>
-                        </div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
-                            <i class="fas fa-layer-group text-3xl text-teal-500 mr-3"></i>
-                            <span>Neural Networks</span>
-                        </div>
-                    </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 95%;"></div>
                 </div>
+              </div>
+              <!-- Java -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium flex items-center"><i class="fab fa-java mr-2 text-red-500"></i> Java</span>
+                  <span class="text-gray-600 dark:text-gray-400">Advanced</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+              </div>
+              <!-- JavaScript / HTML / CSS -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium flex items-center"><i class="fab fa-js mr-2 text-yellow-500"></i> JavaScript / HTML / CSS</span>
+                  <span class="text-gray-600 dark:text-gray-400">Intermediate</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 70%;"></div>
+                </div>
+              </div>
+              <!-- Shell -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium flex items-center"><i class="fas fa-terminal mr-2 text-green-500"></i> Shell Scripting</span>
+                  <span class="text-gray-600 dark:text-gray-400">Advanced</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- 框架、工具与领域 -->
+          <div>
+            <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center"><i class="fas fa-tools mr-3 text-primary-light dark:text-primary-dark"></i> Frameworks, Tools & Domains</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <!-- 深度学习框架 -->
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fab fa-python text-3xl text-blue-500 mr-3"></i>
+                <span>PyTorch</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-project-diagram text-3xl text-orange-500 mr-3"></i>
+                <span>TensorFlow / Keras</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-robot text-3xl text-yellow-500 mr-3"></i>
+                <span>Transformers</span>
+              </div>
+              <!-- 容器与版本控制 -->
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fab fa-docker text-3xl text-blue-400 mr-3"></i>
+                <span>Docker</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fab fa-linux text-3xl text-gray-700 mr-3"></i>
+                <span>Linux / Git</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-code-branch text-3xl text-green-500 mr-3"></i>
+                <span>Gradle / Maven</span>
+              </div>
+              <!-- 领域专长 -->
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-chart-line text-3xl text-purple-500 mr-3"></i>
+                <span>Data Analysis</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-brain text-3xl text-indigo-500 mr-3"></i>
+                <span>Machine Learning</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-camera text-3xl text-pink-500 mr-3"></i>
+                <span>Computer Vision</span>
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center card-hover">
+                <i class="fas fa-layer-group text-3xl text-teal-500 mr-3"></i>
+                <span>Neural Networks</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-
     <!-- Motto Section -->
-    <section
-        class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white opacity-20 animate-pulse-slow"></div>
-            <div
-                class="absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-white opacity-20 animate-pulse-slow delay-1000">
-            </div>
-            <div
-                class="absolute bottom-1/4 right-1/4 w-28 h-28 rounded-full bg-white opacity-20 animate-pulse-slow delay-2000">
-            </div>
-        </div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <i class="fas fa-quote-left text-4xl text-white opacity-20 mb-6"></i>
-            <blockquote class="text-white">
-                <p class="text-2xl sm:text-3xl font-light italic mb-6">"Sapere aude — Dare to know."</p>
-                <p class="text-lg">In solitude and doubt, seek understanding.</p>
-            </blockquote>
-        </div>
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white opacity-20 animate-pulse-slow"></div>
+        <div class="absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-white opacity-20 animate-pulse-slow delay-1000"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-28 h-28 rounded-full bg-white opacity-20 animate-pulse-slow delay-2000"></div>
+      </div>
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <i class="fas fa-quote-left text-4xl text-white opacity-20 mb-6"></i>
+        <blockquote class="text-white">
+          <p class="text-2xl sm:text-3xl font-light italic mb-6">"Sapere aude — Dare to know."</p>
+          <p class="text-lg">In solitude and doubt, seek understanding.</p>
+        </blockquote>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-6 gradient-text">Get In Touch</h2>
-            <p class="text-xl text-gray-700 dark:text-gray-300 mb-8">I'm always open to discussing new projects,
-                creative ideas or opportunities to be part of your vision.</p>
-            <a href="mailto:yuanluo.wu@campus.lmu.de"
-                class="inline-block px-8 py-4 bg-primary-light dark:bg-primary-dark text-white rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-lg hover:shadow-xl">
-                Say Hello <i class="fas fa-paper-plane ml-2 animate-bounce-slow"></i>
-            </a>
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-6 gradient-text">Get In Touch</h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 mb-8">I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+        <a href="mailto:yuanluo.wu@campus.lmu.de" class="inline-block px-8 py-4 bg-primary-light dark:bg-primary-dark text-white rounded-full font-medium hover:bg-opacity-90 transition-colors shadow-lg hover:shadow-xl">Say Hello <i class="fas fa-paper-plane ml-2 animate-bounce-slow"></i></a>
 
-            <div class="mt-12 grid grid-cols-3 gap-4 max-w-xs mx-auto">
-                <a href="https://github.com/42logos" target="_blank"
-                    class="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xl tooltip">
-                    <i class="fab fa-github"></i>
-                    <span class="tooltip-text">GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank"
-                    class="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xl tooltip">
-                    <i class="fab fa-linkedin-in"></i>
-                    <span class="tooltip-text">LinkedIn</span>
-                </a>
-                <a href="mailto:yuanluo.wu@campus.lmu.de"
-                    class="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xl tooltip">
-                    <i class="fas fa-envelope"></i>
-                    <span class="tooltip-text">Email</span>
-                </a>
-            </div>
+        <div class="mt-12 grid grid-cols-3 gap-4 max-w-xs mx-auto">
+          <a href="https://github.com/42logos" target="_blank" class="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xl tooltip">
+            <i class="fab fa-github"></i>
+            <span class="tooltip-text">GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank" class="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xl tooltip">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip-text">LinkedIn</span>
+          </a>
+          <a href="mailto:yuanluo.wu@campus.lmu.de" class="p-4 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xl tooltip">
+            <i class="fas fa-envelope"></i>
+            <span class="tooltip-text">Email</span>
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-xl font-bold gradient-text flex items-center">
-                        <span class="mr-2">👨‍💻</span> Yuanluo Wu
-                    </a>
-                    <p class="text-gray-600 dark:text-gray-400 mt-2">Computer Science + Mathematics Student</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://github.com/42logos" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors text-xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors text-xl">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:yuanluo.wu@campus.lmu.de"
-                        class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors text-xl">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            <div
-                class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
-                <p>&copy; 2024 Yuanluo Wu. All rights reserved.</p>
-            </div>
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="text-xl font-bold gradient-text flex items-center"><span class="mr-2">👨‍💻</span> Yuanluo Wu</a>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">Computer Science + Mathematics Student</p>
+          </div>
+          <div class="flex space-x-6">
+            <a href="https://github.com/42logos" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors text-xl"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors text-xl"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:yuanluo.wu@campus.lmu.de" class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors text-xl"><i class="fas fa-envelope"></i></a>
+          </div>
         </div>
+        <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
+          <p>&copy; 2024 Yuanluo Wu. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        // Dark mode toggle
-        document.getElementById('theme-toggle').addEventListener('click', function () {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-        });
-
-        // Check for saved theme preference
-        if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-button').addEventListener('click', function (e) {
+        e.preventDefault()
+        document.getElementById('mobile-menu').classList.toggle('hidden')
+      })
+      
+      // Dark mode toggle
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        document.documentElement.classList.toggle('dark')
+        localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light')
+      })
+      
+      // Check for saved theme preference
+      if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+      
+      // Typing animation
+      const phrases = ['CS + Math Student.', 'Neural Network Enthusiast.', 'Deep Learning Explorer.', 'Data‑Driven Thinker.', 'Bilingual Communicator.', 'Vision‑Driven Innovator.']
+      
+      let phraseIndex = 0
+      let charIndex = 0
+      let isDeleting = false
+      let isEnd = false
+      const typingText = document.getElementById('typing-text')
+      
+      function type() {
+        const currentPhrase = phrases[phraseIndex]
+      
+        if (isDeleting) {
+          typingText.textContent = currentPhrase.substring(0, charIndex - 1)
+          charIndex--
         } else {
-            document.documentElement.classList.remove('dark');
+          typingText.textContent = currentPhrase.substring(0, charIndex + 1)
+          charIndex++
         }
-
-        // Typing animation
-        const phrases = [
-            "CS + Math Student.",
-            "Neural Network Enthusiast.",
-            "Deep Learning Explorer.",
-            "Data‑Driven Thinker.",
-            "Bilingual Communicator.",
-            "Vision‑Driven Innovator."
-        ];
-
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let isEnd = false;
-        const typingText = document.getElementById('typing-text');
-
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-
-            if (isDeleting) {
-                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isEnd = true;
-                setTimeout(type, 1500);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                isEnd = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(type, 500);
-            } else {
-                const typingSpeed = isDeleting ? 50 :
-                    isEnd ? 2000 : 100;
-                setTimeout(type, typingSpeed);
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isDeleting = true;
-            }
+      
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isEnd = true
+          setTimeout(type, 1500)
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false
+          isEnd = false
+          phraseIndex = (phraseIndex + 1) % phrases.length
+          setTimeout(type, 500)
+        } else {
+          const typingSpeed = isDeleting ? 50 : isEnd ? 2000 : 100
+          setTimeout(type, typingSpeed)
         }
-
-        // Start the typing effect
-        setTimeout(type, 1000);
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.timeline-item, .card-hover, .skill-progress').forEach(element => {
-            observer.observe(element);
-        });
-
-        // Create particles for hero section
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles-js');
-            const particleCount = 30;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-
-                // Random size between 2px and 5px
-                const size = Math.random() * 3 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-
-                // Random animation duration
-                const duration = Math.random() * 20 + 10;
-                particle.style.animationDuration = `${duration}s`;
-
-                // Random delay
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-
-                particlesContainer.appendChild(particle);
-            }
+      
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true
         }
-
-        // Initialize particles when DOM is loaded
-        document.addEventListener('DOMContentLoaded', createParticles);
-
-        // Animate skill bars when they come into view
-        const skillBars = document.querySelectorAll('.skill-progress');
-
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const width = entry.target.style.width;
-                    entry.target.style.width = '0';
-                    setTimeout(() => {
-                        entry.target.style.width = width;
-                    }, 100);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        skillBars.forEach(bar => {
-            skillObserver.observe(bar);
-        });
-
-        // Add hover effect to cards
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const x = e.clientX - card.getBoundingClientRect().left;
-                const y = e.clientY - card.getBoundingClientRect().top;
-
-                const centerX = card.offsetWidth / 2;
-                const centerY = card.offsetHeight / 2;
-
-                const angleX = (y - centerY) / 20;
-                const angleY = (centerX - x) / 20;
-
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            });
-        });
-        window.addEventListener('scroll', () => {
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrolled = (window.scrollY / docHeight) * 100;
-            document.getElementById('scroll-progress').style.width = scrolled + '%';
-        });
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const blocks = document.querySelectorAll('.exp-keytasks');
-            let max = 0;
-            blocks.forEach(b => { max = Math.max(max, b.offsetHeight); });
-            console.log(max);
-            blocks.forEach(b => {
-                // keep adding blank lines until this block matches the max height
-                while (b.offsetHeight < max) {
-                    b.appendChild(document.createElement('br'));
-                }
-            });
-            // ensure uniform heights for Key Tasks and Achievements rows across all cards
-            const expBodies = document.querySelectorAll('.exp-body');
-            let maxTasks = 0, maxAch = 0;
-
-            // find the maximum heights
-            expBodies.forEach(body => {
-                const rows = body.children;
-                maxTasks = Math.max(maxTasks, rows[1].offsetHeight);
-                maxAch   = Math.max(maxAch,   rows[2].offsetHeight);
-            });
-
-            // apply them as min-heights
-            expBodies.forEach(body => {
-                const rows = body.children;
-                rows[1].style.minHeight = maxTasks + 'px';
-                rows[2].style.minHeight = maxAch   + 'px';
-            });
-        });
-
-            
+      }
+      
+      // Start the typing effect
+      setTimeout(type, 1000)
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault()
+      
+          const targetId = this.getAttribute('href')
+          if (targetId === '#') return
+      
+          const targetElement = document.querySelector(targetId)
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            })
+      
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden')
+          }
+        })
+      })
+      
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1
+      }
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in')
+          }
+        })
+      }, observerOptions)
+      
+      document.querySelectorAll('.timeline-item, .card-hover, .skill-progress').forEach((element) => {
+        observer.observe(element)
+      })
+      
+      // Create particles for hero section
+      function createParticles() {
+        const particlesContainer = document.getElementById('particles-js')
+        const particleCount = 30
+      
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div')
+          particle.classList.add('particle')
+      
+          // Random size between 2px and 5px
+          const size = Math.random() * 3 + 2
+          particle.style.width = `${size}px`
+          particle.style.height = `${size}px`
+      
+          // Random position
+          particle.style.left = `${Math.random() * 100}%`
+          particle.style.top = `${Math.random() * 100}%`
+      
+          // Random animation duration
+          const duration = Math.random() * 20 + 10
+          particle.style.animationDuration = `${duration}s`
+      
+          // Random delay
+          particle.style.animationDelay = `${Math.random() * 5}s`
+      
+          particlesContainer.appendChild(particle)
+        }
+      }
+      
+      // Initialize particles when DOM is loaded
+      document.addEventListener('DOMContentLoaded', createParticles)
+      
+      // Animate skill bars when they come into view
+      const skillBars = document.querySelectorAll('.skill-progress')
+      
+      const skillObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const width = entry.target.style.width
+              entry.target.style.width = '0'
+              setTimeout(() => {
+                entry.target.style.width = width
+              }, 100)
+            }
+          })
+        },
+        { threshold: 0.5 }
+      )
+      
+      skillBars.forEach((bar) => {
+        skillObserver.observe(bar)
+      })
+      
+      // Add hover effect to cards
+      document.querySelectorAll('.card-hover').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const x = e.clientX - card.getBoundingClientRect().left
+          const y = e.clientY - card.getBoundingClientRect().top
+      
+          const centerX = card.offsetWidth / 2
+          const centerY = card.offsetHeight / 2
+      
+          const angleX = (y - centerY) / 20
+          const angleY = (centerX - x) / 20
+      
+          card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`
+        })
+      
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'
+        })
+      })
+      window.addEventListener('scroll', () => {
+        const docHeight = document.body.scrollHeight - window.innerHeight
+        const scrolled = (window.scrollY / docHeight) * 100
+        document.getElementById('scroll-progress').style.width = scrolled + '%'
+      })
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        const blocks = document.querySelectorAll('.exp-keytasks')
+        let max = 0
+        blocks.forEach((b) => {
+          max = Math.max(max, b.offsetHeight)
+        })
+        console.log(max)
+        blocks.forEach((b) => {
+          // keep adding blank lines until this block matches the max height
+          while (b.offsetHeight < max) {
+            b.appendChild(document.createElement('br'))
+          }
+        })
+        // ensure uniform heights for Key Tasks and Achievements rows across all cards
+        const expBodies = document.querySelectorAll('.exp-body')
+        let maxTasks = 0,
+          maxAch = 0
+      
+        // find the maximum heights
+        expBodies.forEach((body) => {
+          const rows = body.children
+          maxTasks = Math.max(maxTasks, rows[1].offsetHeight)
+          maxAch = Math.max(maxAch, rows[2].offsetHeight)
+        })
+      
+        // apply them as min-heights
+        expBodies.forEach((body) => {
+          const rows = body.children
+          rows[1].style.minHeight = maxTasks + 'px'
+          rows[2].style.minHeight = maxAch + 'px'
+        })
+      })
     </script>
-</body>
-
+  </body>
 </html>
