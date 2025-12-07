@@ -305,6 +305,19 @@
       color: #10b981;
     }
 
+    /* Experience Timeline Styles */
+    .exp-detail-card {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .exp-detail-card:not(.hidden) {
+      max-height: 2000px;
+      opacity: 1;
+    }
+
     .card-3d {
       perspective: 1000px;           /* keep your existing perspective */
       transform-style: preserve-3d;
@@ -328,6 +341,24 @@
     .card-3d-back {
       /* Removed transform-style property */
       transform: rotateY(180deg);
+    }
+
+    /* Scrollable content for card back */
+    .card-back-content {
+      overflow-y: auto;
+      max-height: calc(100% - 3rem);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+    }
+    .card-back-content::-webkit-scrollbar {
+      width: 4px;
+    }
+    .card-back-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .card-back-content::-webkit-scrollbar-thumb {
+      background-color: rgba(156, 163, 175, 0.5);
+      border-radius: 2px;
     }
 
     /* Glow effect */
@@ -521,6 +552,21 @@
           Download CV <i class="fas fa-download ml-2"></i>
         </a>
       </div>
+      <!-- Social Links -->
+      <div class="mt-8 flex justify-center space-x-6">
+        <a href="https://github.com/42logos" target="_blank" class="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 tooltip">
+          <i class="fab fa-github text-2xl text-white"></i>
+          <span class="tooltip-text">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank" class="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 tooltip">
+          <i class="fab fa-linkedin-in text-2xl text-white"></i>
+          <span class="tooltip-text">LinkedIn</span>
+        </a>
+        <a href="mailto:yuanluo.wu@campus.lmu.de" class="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 tooltip">
+          <i class="fas fa-envelope text-2xl text-white"></i>
+          <span class="tooltip-text">Email me</span>
+        </a>
+      </div>
     </div>
     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
       <a href="#about" class="text-white tooltip">
@@ -541,66 +587,30 @@
 
   <!-- About Section -->
   <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 gradient-text relative inline-block">
         About Me
         <span class="absolute -bottom-1 left-0 w-full h-1 gradient-bg rounded-full"></span>
       </h2>
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-            Bachelor's student in <span class="font-semibold text-primary-light dark:text-primary-dark">Computer Science plus Mathematics</span> at <span class="font-semibold">LMU München</span>, specializing in neural network regression and deep learning applications. Passionate about solving complex problems at the intersection of computer science and mathematics.
-          </p>
-          <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-            I enjoy working close to the metal when needed, but I'm equally comfortable designing <span class="font-bold">high-level abstractions</span>. My current interests include <span class="font-bold">reinforcement learning, simulation-based optimization</span>, and efficient software architecture for AI-driven applications. I value clean code, reproducible workflows, and well-reasoned design choices.
-          </p>
-          <div class="pt-4">
-            <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Languages</h3>
-            <div class="flex flex-wrap gap-3">
-              <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center hover:scale-105 transition-transform">
-                <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> German (negotiation-level)
-              </span>
-              <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center hover:scale-105 transition-transform">
-                <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> Chinese (native-level)
-              </span>
-              <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center hover:scale-105 transition-transform">
-                <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> English (negotiation-level)
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl shadow-sm glass-effect gradient-border">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover hover:shadow-lg">
-              <div class="text-3xl font-bold gradient-text mb-2">2+</div>
-              <div class="text-gray-600 dark:text-gray-300 font-medium">Years of Study</div>
-            </div>
-            <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover hover:shadow-lg">
-              <div class="text-3xl font-bold gradient-text mb-2">3</div>
-              <div class="text-gray-600 dark:text-gray-300 font-medium">Internships</div>
-            </div>
-            <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover hover:shadow-lg">
-              <div class="text-3xl font-bold gradient-text mb-2">5+</div>
-              <div class="text-gray-600 dark:text-gray-300 font-medium">Projects</div>
-            </div>
-            <div class="p-4 bg-white dark:bg-gray-700 rounded-lg text-center card-hover hover:shadow-lg">
-              <div class="text-3xl font-bold gradient-text mb-2">∞</div>
-              <div class="text-gray-600 dark:text-gray-300 font-medium">Curiosity</div>
-            </div>
-          </div>
-          <div class="mt-8 flex justify-center space-x-4">
-            <a href="https://github.com/42logos" target="_blank" class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip hover:scale-110">
-              <i class="fab fa-github text-xl"></i>
-              <span class="tooltip-text">GitHub</span>
-            </a>
-            <a href="https://www.linkedin.com/in/yuanluo-wu-360a57299/" target="_blank" class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip hover:scale-110">
-              <i class="fab fa-linkedin-in text-xl"></i>
-              <span class="tooltip-text">LinkedIn</span>
-            </a>
-            <a href="mailto:yuanluo.wu@campus.lmu.de" class="p-3 bg-white dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors tooltip hover:scale-110">
-              <i class="fas fa-envelope text-xl"></i>
-              <span class="tooltip-text">Email me</span>
-            </a>
+      <div class="space-y-6">
+        <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+          Bachelor's student in <span class="font-semibold text-primary-light dark:text-primary-dark">Computer Science plus Mathematics</span> at <span class="font-semibold">LMU München</span>, specializing in neural network regression and deep learning applications. Passionate about solving complex problems at the intersection of computer science and mathematics.
+        </p>
+        <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+          I enjoy working close to the metal when needed, but I'm equally comfortable designing <span class="font-bold">high-level abstractions</span>. My current interests include <span class="font-bold">reinforcement learning, simulation-based optimization</span>, and efficient software architecture for AI-driven applications. I value clean code, reproducible workflows, and well-reasoned design choices.
+        </p>
+        <div class="pt-4">
+          <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Languages</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center hover:scale-105 transition-transform">
+              <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> German (negotiation-level)
+            </span>
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center hover:scale-105 transition-transform">
+              <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> Chinese (native-level)
+            </span>
+            <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium flex items-center hover:scale-105 transition-transform">
+              <i class="fas fa-language mr-2 text-primary-light dark:text-primary-dark"></i> English (negotiation-level)
+            </span>
           </div>
         </div>
       </div>
@@ -701,167 +711,220 @@
 
   <!-- Experience Section -->
   <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-7xl mx-auto">
       <!-- Section Title -->
       <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary-light to-accent-light bg-clip-text text-transparent dark:from-primary-dark dark:to-accent-dark">
         Experience
       </h2>
 
-      <!-- Experience Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <!-- Card 1 -->
-        <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col gradient-border">
-          <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
-            <i class="fas fa-chart-line text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-            <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-          </header>
-
-          <!-- Card body: 4‑row grid -->
-          <div class="p-8 exp-body">
-            <!-- row 1 – company + date -->
-            <div class="h-24">
-              <h3 class="text-2xl font-semibold leading-tight line-clamp-2">McDermott Will &amp; Emery</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Data Analysis Intern • 2020</p>
+      <!-- Horizontal Timeline -->
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark"></div>
+        
+        <!-- Timeline items container -->
+        <div class="flex justify-between items-start relative">
+          
+          <!-- Experience 1: McDermott -->
+          <div class="flex flex-col items-center group cursor-pointer flex-1" onclick="toggleExperience(1)">
+            <!-- Label box with arrow -->
+            <div class="bg-gray-100 dark:bg-gray-800 px-4 py-3 rounded-lg shadow-md mb-4 text-center transition-all duration-300 group-hover:bg-primary-light group-hover:text-white dark:group-hover:bg-primary-dark border-2 border-transparent group-hover:border-primary-light dark:group-hover:border-primary-dark">
+              <p class="font-bold text-sm text-gray-800 dark:text-gray-200 group-hover:text-white">McDermott Will & Emery</p>
+              <p class="text-xs text-gray-600 dark:text-gray-400 group-hover:text-white/80 mt-1">2020</p>
             </div>
-
-            <!-- row 2 – Key Tasks -->
-            <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-              <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">
-                Key Tasks</h4>
-              <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                <li>Collected and cleaned branch data from multiple firms.</li>
-                <li>Presented competitive analysis to attorneys in weekly briefs.</li>
-              </ul>
-            </div>
-
-            <!-- row 3 – Achievements -->
-            <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
-              <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">
-                Achievements</h4>
-              <p class="text-gray-700 dark:text-gray-300 text-sm">Produced a comprehensive industry competition report highlighting three key market trends that influenced firm strategy.</p>
-            </div>
-
-            <!-- row 4 – Skills (1 fr keeps it at the bottom) -->
-            <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
-              <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
-              <ul class="flex flex-wrap gap-2">
-                <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Data Analysis</li>
-                <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Power BI</li>
-                <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs hover:scale-105 transition-transform">
-                  SQL</li>
-                <li class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Excel</li>
-              </ul>
-            </div>
+            <!-- Arrow down -->
+            <div class="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-100 dark:border-t-gray-800 group-hover:border-t-primary-light dark:group-hover:border-t-primary-dark transition-all duration-300"></div>
+            <!-- Dot on timeline -->
+            <div class="w-6 h-6 bg-primary-light dark:bg-primary-dark rounded-full border-4 border-white dark:border-gray-900 shadow-lg mt-2 group-hover:scale-125 transition-transform"></div>
           </div>
-        </article>
 
-        <!-- Card 2 -->
-        <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col gradient-border">
-  <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
-    <i class="fas fa-brain text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-    <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-  </header>
-
-  <div class="p-8 exp-body">
-    <!-- row 1 -->
-    <div class="h-24">
-      <h3 class="text-2xl font-semibold leading-tight line-clamp-2">
-        CV &amp; Learning Group · LMU Munich
-      </h3>
-      <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-        Deep-Learning Practical • Oct 2024 – Apr 2025
-      </p>
-    </div>
-
-    <!-- row 2 – Highlights -->
-    <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-      <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide">Highlights</h4>
-      <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-sm">
-        <li>Auto-labelled &gt;10 k CK+, FER2013 &amp; AffectNet images (CVAT + heavy data-aug).</li>
-        <li>Hydra-driven PyTorch zoo (LeNet→ResNet, ViT, Hybrid FCN) with TensorBoard.</li>
-        <li>Grad-CAM real-time &amp; batch (webcam / video / CSV) at ≈25 ms per frame.</li>
-        <li>Exported ONNX; deployed with Flask (+FastAPI demo).</li>
-      </ul>
-    </div>
-
-    <!-- row 3 – Achievements -->
-    <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
-      <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide">Achievements</h4>
-      <p class="text-sm">
-        EfficientDet hit <strong>92 % mAP</strong>; Hybrid VGG-ViT reached <strong>72 % top-1</strong> on FER2013 (≈70 % AffectNet). Pipeline adopted as 2025 course reference.
-      </p>
-    </div>
-
-    <!-- row 4 – Skills -->
-    <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
-      <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide">Skills</h4>
-      <ul class="flex flex-wrap gap-2 text-xs">
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">PyTorch</li>
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">Hydra CLI</li>
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">TensorBoard</li>
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">Grad-CAM</li>
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">ONNX</li>
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">Flask</li>
-        <li class="px-3 py-1 bg-accent-light/10 rounded-full">FastAPI</li>
-      </ul>
-    </div>
-  </div>
-</article>
-
-        <!-- Card 3 -->
-        <article class="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl flex flex-col gradient-border">
-          <header class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center relative">
-            <i class="fas fa-laptop-code text-7xl text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-            <span class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-          </header>
-
-          <!-- Card body -->
-          <div class="p-8 exp-body">
-            <!-- row 1 -->
-            <div class="h-24">
-              <h3 class="text-2xl font-semibold leading-tight line-clamp-2">LMU Software and Computational Systems Lab</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Java Developer Intern Practical at uni • 04.2024 - 07.2024</p>
+          <!-- Experience 2: LMU Software Lab -->
+          <div class="flex flex-col items-center group cursor-pointer flex-1" onclick="toggleExperience(2)">
+            <div class="bg-gray-100 dark:bg-gray-800 px-4 py-3 rounded-lg shadow-md mb-4 text-center transition-all duration-300 group-hover:bg-primary-light group-hover:text-white dark:group-hover:bg-primary-dark border-2 border-transparent group-hover:border-primary-light dark:group-hover:border-primary-dark">
+              <p class="font-bold text-sm text-gray-800 dark:text-gray-200 group-hover:text-white">LMU Software Lab</p>
+              <p class="text-xs text-gray-600 dark:text-gray-400 group-hover:text-white/80 mt-1">2024</p>
             </div>
-
-            <!-- row 2 -->
-            <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
-              <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2 exp-keytasks">
-                Key Tasks</h4>
-              <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                <li>Set up Git workflows and Gradle build automation for CI/CD.</li>
-                <li>Applied OOP principles &amp; design patterns for scalable features.</li>
-                <li>Wrote JUnit tests and used debuggers to ensure code quality.</li>
-              </ul>
-            </div>
-
-            <!-- row 3 -->
-            <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
-              <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">
-                Achievements</h4>
-              <p class="text-gray-700 dark:text-gray-300 text-sm">Built an online multiplayer chess game prototype, laying groundwork for the final project.</p>
-            </div>
-
-            <!-- row 4 -->
-            <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark self-end">
-              <h4 class="font-semibold text-gray-800 dark:text-gray-200 tracking-wide uppercase text-xs mb-2">Skills</h4>
-              <ul class="flex flex-wrap gap-2">
-                <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Java</li>
-                <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Git</li>
-                <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Gradle</li>
-                <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs hover:scale-105 transition-transform">
-                  JUnit</li>
-                <li class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs hover:scale-105 transition-transform">
-                  Design Patterns</li>
-              </ul>
-            </div>
+            <div class="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-100 dark:border-t-gray-800 group-hover:border-t-primary-light dark:group-hover:border-t-primary-dark transition-all duration-300"></div>
+            <div class="w-6 h-6 bg-primary-light dark:bg-primary-dark rounded-full border-4 border-white dark:border-gray-900 shadow-lg mt-2 group-hover:scale-125 transition-transform"></div>
           </div>
-        </article>
+
+          <!-- Experience 3: CV & Learning Group -->
+          <div class="flex flex-col items-center group cursor-pointer flex-1" onclick="toggleExperience(3)">
+            <div class="bg-gray-100 dark:bg-gray-800 px-4 py-3 rounded-lg shadow-md mb-4 text-center transition-all duration-300 group-hover:bg-primary-light group-hover:text-white dark:group-hover:bg-primary-dark border-2 border-transparent group-hover:border-primary-light dark:group-hover:border-primary-dark">
+              <p class="font-bold text-sm text-gray-800 dark:text-gray-200 group-hover:text-white">CV & Learning Group</p>
+              <p class="text-xs text-gray-600 dark:text-gray-400 group-hover:text-white/80 mt-1">2024-2025</p>
+            </div>
+            <div class="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-100 dark:border-t-gray-800 group-hover:border-t-primary-light dark:group-hover:border-t-primary-dark transition-all duration-300"></div>
+            <div class="w-6 h-6 bg-primary-light dark:bg-primary-dark rounded-full border-4 border-white dark:border-gray-900 shadow-lg mt-2 group-hover:scale-125 transition-transform"></div>
+          </div>
+
+        </div>
+
+        <!-- Expanded Detail Cards (hidden by default) -->
+        <div class="mt-16 space-y-6">
+          
+          <!-- Detail Card 1: McDermott -->
+          <div id="exp-detail-1" class="hidden exp-detail-card">
+            <article class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-500 max-w-4xl mx-auto">
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-6">
+                  <div class="flex items-center">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-chart-line text-2xl text-white"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-2xl font-bold text-gray-800 dark:text-white">McDermott Will &amp; Emery</h3>
+                      <p class="text-gray-600 dark:text-gray-400">Data Analysis Intern • 2020</p>
+                    </div>
+                  </div>
+                  <button onclick="toggleExperience(1)" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl">&times;</button>
+                </div>
+                
+                <div class="space-y-6">
+                  <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide text-gray-800 dark:text-gray-200">Highlights</h4>
+                    <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                      <li>Supported finance- and market-oriented research by collecting and structuring <strong>competitor and product data</strong> for targeted industry directions (e.g., automotive, semiconductors).</li>
+                      <li>Conducted <strong>comparative trend analysis</strong> across companies and product lines, synthesizing findings into concise internal briefs.</li>
+                      <li>Translated analytical results into <strong>clear charts and executive-ready slides</strong>, improving decision-oriented readability.</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide text-gray-800 dark:text-gray-200">Achievements</h4>
+                    <ul class="list-disc marker:text-accent-light dark:marker:text-accent-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                      <li>Delivered <strong>multiple short industry reports</strong> on sector and company product dynamics under tight turnaround.</li>
+                      <li>Improved the consistency of data summaries and visual reporting through <strong>structured templates</strong> and repeatable analysis steps.</li>
+                    </ul>
+                  </div>
+                
+                  <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide text-gray-800 dark:text-gray-200">Skills</h4>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Excel</span>
+                      <span class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">PowerPoint</span>
+                      <span class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Data Analysis</span>
+                      <span class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Comparative Market Research</span>
+                      <span class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Trend Reporting</span>
+                      <span class="px-3 py-1 bg-primary-light/10 text-primary-light dark:bg-primary-dark/20 dark:text-primary-light rounded-full text-xs">Data Visualization</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Detail Card 2: LMU Software Lab -->
+          <div id="exp-detail-2" class="hidden exp-detail-card">
+            <article class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-500 max-w-4xl mx-auto">
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-6">
+                  <div class="flex items-center">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-laptop-code text-2xl text-white"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-2xl font-bold text-gray-800 dark:text-white">LMU Software and Computational Systems Lab</h3>
+                      <p class="text-gray-600 dark:text-gray-400">Java Developer Intern Practical • 04.2024 - 07.2024</p>
+                    </div>
+                  </div>
+                  <button onclick="toggleExperience(2)" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide text-gray-800 dark:text-gray-200">Key Tasks</h4>
+                    <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                      <li>Set up Git workflows and Gradle build automation for CI/CD.</li>
+                      <li>Applied OOP principles &amp; design patterns for scalable features.</li>
+                      <li>Wrote JUnit tests and used debuggers to ensure code quality.</li>
+                    </ul>
+                  </div>
+                  <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide text-gray-800 dark:text-gray-200">Achievements</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">Built an online multiplayer chess game prototype, laying groundwork for the final project.</p>
+                  </div>
+                </div>
+                
+                <div class="mt-6 pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                  <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide text-gray-800 dark:text-gray-200">Skills</h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Java</span>
+                    <span class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Git</span>
+                    <span class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Gradle</span>
+                    <span class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">JUnit</span>
+                    <span class="px-3 py-1 bg-accent-light/10 text-accent-light dark:bg-accent-dark/20 dark:text-accent-light rounded-full text-xs">Design Patterns</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Detail Card 3: CV & Learning Group -->
+          <div id="exp-detail-3" class="hidden exp-detail-card">
+            <article class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-500 max-w-4xl mx-auto">
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-6">
+                  <div class="flex items-center">
+                    <div class="w-14 h-14 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-brain text-2xl text-white"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-2xl font-bold text-gray-800 dark:text-white">CV &amp; Learning Group · LMU Munich</h3>
+                      <p class="text-gray-600 dark:text-gray-400">Deep-Learning Practical • Oct 2024 – Apr 2025</p>
+                    </div>
+                  </div>
+                  <button onclick="toggleExperience(3)" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl">&times;</button>
+                </div>
+                
+                <div class="space-y-6">
+                  <div class="pl-5 border-l-4 border-primary-light dark:border-primary-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide">Highlights</h4>
+                    <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                      <li>Built a <strong>Hydra-driven PyTorch</strong> training pipeline for facial expression recognition across <strong>CK+ / FER2013 / AffectNet</strong>, enabling clean, reproducible multi-model experiments.</li>
+                      <li>Implemented and benchmarked a unified model zoo including <strong>CNNs (LeNet/ResNet/VGG), ViT, Hybrid (CNN+ViT), and FCN</strong> within a shared training/evaluation framework.</li>
+                      <li>Applied <strong>task-appropriate data augmentation</strong> to improve generalization across datasets and architectures.</li>
+                      <li>Integrated <strong>TensorBoard</strong> for systematic training/testing analysis and experiment tracking.</li>
+                      <li>Delivered real-time and offline utilities: <strong>webcam emotion detection</strong>, <strong>attention-map mode</strong>, <strong>video processing</strong>, and <strong>batch image-to-CSV</strong> workflows.</li>
+                      <li>Implemented <strong>Grad-CAM for the Hybrid model</strong> and exposed it through the real-time attention-map workflow.</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide">Achievements</h4>
+                    <ul class="list-disc marker:text-accent-light dark:marker:text-accent-dark space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                      <li>Achieved <strong>~72% top-1 on FER2013</strong> with a Hybrid CNN-ViT configuration; observed <strong>~70%</strong> performance level on AffectNet under comparable settings.</li>
+                      <li>Delivered a reproducible FER pipeline with Hydra-configured training, augmentation, and evaluation across model families.</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="pl-5 border-l-4 border-accent-light dark:border-accent-dark">
+                    <h4 class="font-semibold uppercase text-xs mb-2 tracking-wide">Skills</h4>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">PyTorch</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Python</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Hydra</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">TensorBoard</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Grad-CAM</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">CNN</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">ViT</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">ResNet</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">VGG</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Computer Vision</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Deep Learning</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Data Augmentation</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">OpenCV</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Jupyter Notebook</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Flask</span>
+                      <span class="px-3 py-1 bg-accent-light/10 rounded-full text-xs">Real-time Inference</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -877,84 +940,45 @@
 
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Project 1 -->
-        <div class="card-3d group relative h-full">            <!-- 1. explicit height -->
-          <div class="card-3d-inner relative h-full origin-center transition-transform duration-900">
-            <div class="card-3d-front h-full">
-              <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-green-100 to-teal-100 dark:from-green-900 dark:to-teal-900 animate-fade-in h-full">
-                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-
-                <div class="h-64 flex items-center justify-center relative overflow-hidden">
-                  <i class="fas fa-smile text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-300"></i>
-                </div>
-
-                <div class="p-6 relative">
-                  <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Facial Expression Recognition</h3>
-                  <p class="text-gray-700 dark:text-gray-300 mb-4">Developed a system using CNN and Vision Transformers (ViT) to classify facial expressions with high accuracy.</p>
-                  <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">CNN</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">ViT</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">PyTorch</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Computer Vision</span>
-                  </div>
-                  <a href="https://github.com/ndrohrich/CVDL_Practical" target="_blank" class="inline-flex items-center text-white dark:text-gray-200 hover:underline font-medium">View on GitHub <i class="fas fa-external-link-alt ml-2"></i></a>
-                </div>
+        <div class="group relative h-full">
+          <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-green-100 to-teal-100 dark:from-green-900 dark:to-teal-900 animate-fade-in h-full transition-transform duration-300 hover:scale-[1.02]">
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+            <div class="p-6 relative">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Facial Expression Recognition</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-3">Developed a system using CNN and Vision Transformers (ViT) to classify facial expressions with high accuracy.</p>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 italic">Achieved 92% accuracy on FER2013 dataset with real-time inference optimization.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">CNN</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">ViT</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">PyTorch</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Computer Vision</span>
               </div>
-            </div>
-            <div class="card-3d-back absolute inset-0 backface-hidden rotate-y-180 h-full">
-              <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-green-100 to-teal-100 dark:from-green-900 dark:to-teal-900 animate-fade-in h-full p-6 flex flex-col justify-center">
-                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Technical Details</h3>
-                <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-2 text-gray-700 dark:text-gray-300">
-                  <li>Implemented EfficientNet and Vision Transformers for classification</li>
-                  <li>Achieved 92% accuracy on FER2013 dataset</li>
-                  <li>Optimized model for real-time inference</li>
-                  <li>Deployed as a web service using FastAPI</li>
-                </ul>
-              </div>
+              <a href="https://github.com/ndrohrich/CVDL_Practical" target="_blank" class="inline-flex items-center text-gray-800 dark:text-gray-200 hover:underline font-medium">View on GitHub <i class="fas fa-external-link-alt ml-2"></i></a>
             </div>
           </div>
         </div>
 
         <!-- Project 2 -->
-        <div class="card-3d group relative h-full">
-          <div class="card-3d-inner origin-center transition-transform">
-            <div class="card-3d-front h-full">
-
-            
-              
-
-              <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 animate-fade-in h-full">
-                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-
-                <div class="h-64 flex items-center justify-center relative overflow-hidden">
-                  <i class="fas fa-project-diagram text-6xl text-white opacity-90 group-hover:scale-110 transition-transform duration-300"></i>
-                </div>
-
-                <div class="p-6 relative">
-                  <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Reinforcement Learning Poker Agent</h3>
-                  <p class="text-gray-700 dark:text-gray-300 mb-4">
-                    Personal project developing a heads-up Texas Hold'em agent using self-play reinforcement learning. Built with PyTorch and eval7 to simulate games and optimize policy through training.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Reinforcement Learning</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">PyTorch</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Poker AI</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Self-Play</span>
-                    <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Game Theory Optimal</span>
-                  </div>
-                  <a href="#" class="inline-flex items-center text-white dark:text-gray-200 hover:underline font-medium">Coming Soon <i class="fas fa-lock ml-2"></i></a>
-                </div>
+        <div class="group relative h-full">
+          <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 animate-fade-in h-full transition-transform duration-300 hover:scale-[1.02]">
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+            <div class="p-6 relative">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">6-Max Poker Reinforcement Learning Engine</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-3">
+                A high-performance, deterministic <strong>6-max No-Limit Texas Hold'em</strong> poker engine designed for <strong>reinforcement learning research</strong>. Features modular <strong>Python</strong> and <strong>Rust</strong> components with <strong>Gymnasium-compatible</strong> environments.
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 italic">POMDP formulation with Rust-powered hand evaluator via PyO3 for high-performance training.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Python</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Rust</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">PyTorch</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Gymnasium</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Ray RLlib</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">PyO3</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Reinforcement Learning</span>
+                <span class="px-3 py-1 bg-white bg-opacity-60 dark:bg-gray-800 rounded-full text-xs hover:scale-105 transition-transform">Game Theory</span>
               </div>
-            </div>
-                <div class="card-3d-back absolute inset-0 backface-hidden rotate-y-180 h-full">
-              <div class="card-hover group relative overflow-hidden rounded-2xl shadow-md bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 animate-fade-in h-full p-6 flex flex-col justify-center">
-                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Technical Details</h3>
-                <ul class="list-disc marker:text-primary-light dark:marker:text-primary-dark space-y-2 text-gray-700 dark:text-gray-300">
-                  <li>Implemented Deep Q-Learning with experience replay</li>
-                  <li>Trained against various opponent strategies</li>
-                  <li>Achieved 60% win rate against intermediate bots</li>
-                  <li>Optimized for both cash games and tournaments</li>
-                </ul>
-              </div>
+              <a href="https://github.com/42logos/RL_NLHE" target="_blank" class="inline-flex items-center text-gray-800 dark:text-gray-200 hover:underline font-medium">View on GitHub <i class="fas fa-external-link-alt ml-2"></i></a>
             </div>
           </div>
         </div>
@@ -1223,7 +1247,41 @@
 
     // Start the typing effect on page load
     document.addEventListener('DOMContentLoaded', type);
-    // Additional functionality can be added here
+    
+    // Experience timeline toggle function
+    function toggleExperience(id) {
+      const allCards = document.querySelectorAll('.exp-detail-card');
+      const targetCard = document.getElementById('exp-detail-' + id);
+      
+      // If clicking the same card that's open, close it
+      if (targetCard && !targetCard.classList.contains('hidden')) {
+        targetCard.classList.add('hidden');
+        targetCard.style.maxHeight = '0';
+        targetCard.style.opacity = '0';
+        return;
+      }
+      
+      // Close all cards first
+      allCards.forEach(card => {
+        card.classList.add('hidden');
+        card.style.maxHeight = '0';
+        card.style.opacity = '0';
+      });
+      
+      // Open the target card with animation
+      if (targetCard) {
+        targetCard.classList.remove('hidden');
+        setTimeout(() => {
+          targetCard.style.maxHeight = '2000px';
+          targetCard.style.opacity = '1';
+        }, 10);
+        
+        // Scroll to the card smoothly
+        setTimeout(() => {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    }
   </script>
 </body>
 </html>
