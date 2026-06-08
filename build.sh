@@ -28,6 +28,6 @@ else
   echo "✅ 'uv' is already installed; skipping installation."
 fi
 
-# 5. Run main.py with uv
-echo "🚀 Running main.py via uv..."
-uv run main.py
+# 5. Serve the app with gunicorn (production WSGI server; replaces the Werkzeug dev server)
+echo "🚀 Serving via gunicorn..."
+uv run --with gunicorn gunicorn --bind 0.0.0.0:80 --workers 2 --timeout 60 main:app

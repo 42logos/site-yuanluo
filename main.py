@@ -17,4 +17,6 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=80, host="0.0.0.0")
+    # debug disabled: the Werkzeug interactive debugger is a remote code execution
+    # vector and leaks tracebacks. Production serving is done via gunicorn (see build.sh).
+    app.run(debug=False, port=80, host="0.0.0.0")
